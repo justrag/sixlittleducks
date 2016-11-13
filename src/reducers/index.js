@@ -15,7 +15,7 @@ export const getRoll = (state) => state.roll;
 export const isWon = (state) => fromDucks.isWon(state.ducks);
 const isBlocked = (state) => fromDucks.allDucks(state.ducks).filter(d => d.position >= getRoll(state)).length === 0;
 const isFirstPondEmpty = (state) => fromDucks.isFirstPondEmpty(state.ducks);
-export const isTemporarilyBlocked = (state) => isBlocked(state) && !isFirstPondEmpty(state);
+export const isTemporarilyBlocked = (state) => !isWon(state) && isBlocked(state) && !isFirstPondEmpty(state);
 export const isPermanentlyBlocked = (state) => isBlocked(state) && isFirstPondEmpty(state);
 
 const reducer = combineReducers({
