@@ -31,7 +31,11 @@ const startingDucksReducer = () => R.indexBy(R.prop('id'), R.map(id => ({id, pos
 
 const moveDuckToPosition = (ducks, duckId, position) => R.assocPath([duckId, 'position'], position, ducks);
 
-const chooseDuckReducer = (state, { duckId, roll } ) => moveDuckToPosition(state, duckId, state[duckId].position - roll);
+//const chooseDuckReducer = (state, { duckId, roll } ) => moveDuckToPosition(state, duckId, state[duckId].position - roll);
+const chooseDuckReducer = (state, { duckId, roll } ) => {
+  console.log(duckId, roll, state[duckId]);
+  return moveDuckToPosition(state, duckId, state[duckId].position - roll);
+};
 
 const unblockReducer = (state) => moveDuckToPosition(state, findFirstRescuedDuck(state).id, 6);
 
