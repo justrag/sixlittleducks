@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import RaisedButton from 'material-ui/RaisedButton';
 import { startGame } from '../actions/';
-// import { isPermanentlyBlocked, isWon } from '../reducers/';
+import { isPermanentlyBlocked, isWon } from '../reducers/';
 
 const EndScreen = ({ lost, won, startGameAction }) => (
   <div>
@@ -18,10 +18,8 @@ EndScreen.propTypes = {
   won: React.PropTypes.bool.isRequired,
 };
 const mapStateToProps = (state) => ({
-  // lost: isPermanentlyBlocked(state),
-  // won: isWon(state),
-  lost: false,
-  won: true,
+  lost: isPermanentlyBlocked(state),
+  won: isWon(state),
 });
 export default connect(mapStateToProps, {
   startGameAction: startGame,
