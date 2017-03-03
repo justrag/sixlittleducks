@@ -2,22 +2,22 @@ import { createReducer } from 'redux-act';
 import R from 'ramda';
 import { startGame, chooseDuck, unblock } from '../actions/';
 
-const allIds = [1, 2, 3, 4, 5, 6];
+const duckIds = [1, 2, 3, 4, 5, 6];
 
-const allPondIds = [0, 1, 2, 3, 4, 5, 6];
+const pondIds = [0, 1, 2, 3, 4, 5, 6];
 
-export const allDucks = (state) => allIds.map(id => state[id]);
-
-export const getPonds = (state) => allPondIds.map(id => ({id, ducks: allDucks(state).filter(d => (d.position === id))}));
-export const isWon = (state) => allDucks(state).filter(d => (d.position === 0)).length === 6;
-export const isFirstPondEmpty = (state) => (allDucks(state).filter(d => (d.position === 0)).length === 0);
+//export const getDucks = (state) => duckIds.map(id => state[id]);
+export const getDucks = (state) => duckIds.map(id => ({...state[id], seq: duckIds.filter(d => (state[d].position === state[id].position && id > d)).length}));
+export const getPonds = (state) => pondIds.map(id => ({id, ducks: getDucks(state).filter(d => (d.position === id))}));
+export const isWon = (state) => getDucks(state).filter(d => (d.position === 0)).length === 6;
+export const isFirstPondEmpty = (state) => (getDucks(state).filter(d => (d.position === 0)).length === 0);
 
 // 1: {id: 1, position: 6},
 // 2: {id: 2, position: 6},
 // ...
 // 6: {id: 6, position: 6},
 // const startingDucks = () =>
-//    allIds.reduce(
+//    duckIds.reduce(
 //     (prev, curr) => ({ ...prev, [curr]: { id: curr, position: 6 } })
 //     , {});
 
@@ -27,7 +27,7 @@ const moveDuckToPosition = (ducks, duckId, position) => R.assocPath([duckId, 'po
 
 const chooseDuckReducer = (state, { duckId, roll } ) => moveDuckToPosition(state, duckId, state[duckId].position - roll);
 
-//const findFirstRescuedDuck = (state) => allDucks(state).find(d => (d.position === 0));
+//const findFirstRescuedDuck = (state) => getDucks(state).find(d => (d.position === 0));
 //const unblockReducer = (state) => moveDuckToPosition(state, findFirstRescuedDuck(state).id, 6);
 const unblockReducer = (state, duckId) => moveDuckToPosition(state, duckId, 6);
 

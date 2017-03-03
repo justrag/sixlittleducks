@@ -1,12 +1,11 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import RaisedButton from 'material-ui/RaisedButton';
 import { startGame } from '../actions/';
 import { getBulba } from '../reducers/';
 
 const BeginScreen = ({ bulba, startGameAction }) => (<div>
   <h1>{bulba}</h1>
-  <RaisedButton onClick={() => startGameAction()} label="START GAME" fullWidth={true} />
+  <button onClick={() => startGameAction()}>START GAME</button>
   </div>
   );
 BeginScreen.propTypes = {

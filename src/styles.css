@@ -1,0 +1,39 @@
+.duck {
+  filter: FlipH;
+  position: absolute;
+  top: 25vh;
+  transition: .5s transform ease-in-out;
+  width: 3vw;
+}
+.duck.active {
+  cursor: move;
+  border: thick solid black;
+}
+.duck.unblock {
+  cursor: crosshair;
+  border: thin solid gray;
+}
+.duck.inactive {
+  pointer-events: none;
+  opacity: 0.5;
+  cursor: default;
+}
+.pond {
+  top: 20vh;
+  position: absolute;
+  width: 13vw;
+  height: 24vw;
+  background-color: lightblue;
+  border-radius: 50%;
+  z-index: 0;
+}
+.pond h1 {
+  display: table;
+  margin: 0 auto;
+}
+.container {
+  position: relative;
+}
+.roller {
+  transition: all 5s ease-in-out;
+}
