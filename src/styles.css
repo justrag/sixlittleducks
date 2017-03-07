@@ -1,13 +1,19 @@
+* {
+    font-family: 'Pacifico', cursive;
+  }
 .duck {
-  filter: FlipH;
   position: absolute;
   top: 25vh;
   transition: .5s transform ease-in-out;
   width: 3vw;
+/*  background-color: white;*/
+}
+.duck svg {
+  filter: drop-shadow( 1px 1px 1px #000 );
 }
 .duck.active {
   cursor: move;
-  border: thick solid black;
+/*  border: thick solid black;*/
 }
 .duck.unblock {
   cursor: crosshair;
@@ -36,4 +42,17 @@
 }
 .roller {
   transition: all 5s ease-in-out;
+}
+.top, .bottom {
+  text-align: center;
+}
+button {
+  appearance: none;
+  padding: 10px 40px;
+  margin: 0px 10px 10px 0px;
+  float: left;
+  border-radius: 10px;
+  font-size: 25px;
+  color: #FFF;
+  text-decoration: none;  
 }

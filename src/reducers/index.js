@@ -1,5 +1,5 @@
 import { combineReducers } from 'redux';
-import bulba from './bulba';
+// import bulba from './bulba';
 import screen, * as fromScreen from './screen';
 import turn from './turn';
 import ducks, * as fromDucks from './ducks';
@@ -19,7 +19,7 @@ export const isTemporarilyBlocked = (state) => !isWon(state) && isBlocked(state)
 export const isPermanentlyBlocked = (state) => isBlocked(state) && isFirstPondEmpty(state);
 
 const reducer = combineReducers({
-  bulba,
+//  bulba,
   screen,
   turn,
   ducks,

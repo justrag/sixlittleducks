@@ -4,7 +4,7 @@ import { startGame } from '../actions/';
 import { isPermanentlyBlocked, isWon } from '../reducers/';
 
 const EndScreen = ({ lost, won, startGameAction }) => (
-  <div>
+  <div className="top">
     <h1>THE GAME ENDED!</h1>
     { lost && <h1>YOU LOST!</h1> }
     { won && <h1>YOU WON!</h1> }

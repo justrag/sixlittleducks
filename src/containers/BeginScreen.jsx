@@ -3,8 +3,7 @@ import { connect } from 'react-redux';
 import { startGame } from '../actions/';
 import { getBulba } from '../reducers/';
 
-const BeginScreen = ({ bulba, startGameAction }) => (<div>
-  <h1>{bulba}</h1>
+const BeginScreen = ({ bulba, startGameAction }) => (<div className="top">
   <button onClick={() => startGameAction()}>START GAME</button>
   </div>
   );

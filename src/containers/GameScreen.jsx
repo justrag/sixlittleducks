@@ -37,10 +37,10 @@ const ponds = [0, 1, 2, 3, 4, 5, 6];
 const GameScreen = ({ ducks, turn, roll,
     displayBlocked, displayDefeat, displayVictory,
   endGameAction, chooseDuckAction, unblockAction }) => (<div>
-  <div>
-    <div>Six Little Ducks</div>
+  <div className="top">
+    <h1>Six Little Ducks</h1>
     <Roller roll={roll} />
-    <div>Turn: {turn}</div>
+    <h2>Turn: {turn}</h2>
   </div>
 <div className="container">
  {ducks.map(d => (
@@ -59,9 +59,11 @@ const GameScreen = ({ ducks, turn, roll,
   </div>
   ))}
  </div>
-      { displayBlocked && <div>YOU'RE BLOCKED!</div> }
-      { displayDefeat && <button onClick={() => endGameAction()}>YOU LOST!</button> }
-      { displayVictory && <button onClick={() => endGameAction()}>YOU WON!</button> }
+ <div className="bottom">
+      { displayBlocked && <h2>YOU'RE BLOCKED!</h2> }
+      { displayDefeat && <h3><button onClick={() => endGameAction()}>YOU LOST!</button></h3> }
+      { displayVictory && <h3><button onClick={() => endGameAction()}>YOU WON!</button></h3> }
+      </div>
   </div>);
 GameScreen.propTypes = {
   turn: React.PropTypes.number.isRequired,
