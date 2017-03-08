@@ -7,9 +7,17 @@ import { getScreen, Screens } from '../reducers/';
 
 const Screen = ({ screen }) => (
   <div>
+  <div id="overlay">
+  Please rotate the screen.
+  </div>
+  <div id="screen">
     {(screen === Screens.Begin) && <BeginScreen /> }
     {(screen === Screens.Game) && <GameScreen /> }
     {(screen === Screens.End) && <EndScreen /> }
+  <footer>
+<p>Sound effects obtained from www.zapsplat.com</p>
+  </footer>
+  </div>
   </div>
   );
 Screen.propTypes = {

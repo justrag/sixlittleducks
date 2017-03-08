@@ -36,7 +36,7 @@ const ponds = [0, 1, 2, 3, 4, 5, 6];
 
 const GameScreen = ({ ducks, turn, roll,
     displayBlocked, displayDefeat, displayVictory,
-  endGameAction, chooseDuckAction, unblockAction }) => (<div>
+  gameWonAction, gameLostAction, chooseDuckAction, unblockAction }) => (<div>
   <div className="top">
     <h1>Six Little Ducks</h1>
     <Roller roll={roll} />
@@ -55,14 +55,14 @@ const GameScreen = ({ ducks, turn, roll,
    ))}
  {ponds.map(p=> (
   <div key={`pond${p}`} className="pond" style={{transform: `translate(${2 + p * 14}vw)`}}>
-  <h1 style={{color: 'orange'}}>{p}</h1>
+  <h1 style={{color: 'orange'}}>{(p === 0)?"Home":p}</h1>
   </div>
   ))}
  </div>
  <div className="bottom">
-      { displayBlocked && <h2>You're blocked!</h2> }
-      { displayDefeat && <h3><button onClick={() => endGameAction()}>You lost!</button></h3> }
-      { displayVictory && <h3><button onClick={() => endGameAction()}>You won!</button></h3> }
+      { displayBlocked && <h2>No duck can move! One of the returned has to go back.</h2> }
+      { displayDefeat && <h3><button onClick={gameLostAction}>You lost!</button></h3> }
+      { displayVictory && <h3><button onClick={gameWonAction}>You won!</button></h3> }
       </div>
   </div>);
 GameScreen.propTypes = {
@@ -72,7 +72,8 @@ GameScreen.propTypes = {
   displayBlocked: React.PropTypes.bool.isRequired,
   displayDefeat: React.PropTypes.bool.isRequired,
   displayVictory: React.PropTypes.bool.isRequired,
-  endGameAction: React.PropTypes.func.isRequired,
+  gameLostAction: React.PropTypes.func.isRequired,
+  gameWonAction: React.PropTypes.func.isRequired,
   chooseDuckAction: React.PropTypes.func.isRequired,
   unblockAction: React.PropTypes.func.isRequired,
 };
@@ -86,6 +87,7 @@ const mapStateToProps = (state) => ({
 });
 export default connect(mapStateToProps, {
   chooseDuckAction: chooseDuck,
-  endGameAction: endGame,
+  gameWonAction: () => endGame(1),
+  gameLostAction: () => endGame(0),
   unblockAction: unblock,
 })(GameScreen);

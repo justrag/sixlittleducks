@@ -2,9 +2,9 @@ import { createReducer } from 'redux-act';
 import R from 'ramda';
 import { startGame, chooseDuck, unblock } from '../actions/';
 
-const duckIds = [1, 2, 3, 4, 5, 6];
+const duckIds = R.range(1,7); //[1, 2, 3, 4, 5, 6]
 
-const pondIds = [0, 1, 2, 3, 4, 5, 6];
+const pondIds = R.range(0,7); // [0, 1, 2, 3, 4, 5, 6]
 
 //export const getDucks = (state) => duckIds.map(id => state[id]);
 export const getDucks = (state) => duckIds.map(id => ({...state[id], seq: duckIds.filter(d => (state[d].position === state[id].position && id > d)).length}));
@@ -16,19 +16,12 @@ export const isFirstPondEmpty = (state) => (getDucks(state).filter(d => (d.posit
 // 2: {id: 2, position: 6},
 // ...
 // 6: {id: 6, position: 6},
-// const startingDucks = () =>
-//    duckIds.reduce(
-//     (prev, curr) => ({ ...prev, [curr]: { id: curr, position: 6 } })
-//     , {});
-
-const startingDucksReducer = () => R.indexBy(R.prop('id'), R.map(id => ({id, position: 6}), R.range(1,7)));
+const startingDucksReducer = () => R.indexBy(R.prop('id'), R.map(id => ({id, position: 6}), duckIds));
 
 const moveDuckToPosition = (ducks, duckId, position) => R.assocPath([duckId, 'position'], position, ducks);
 
 const chooseDuckReducer = (state, { duckId, roll } ) => moveDuckToPosition(state, duckId, state[duckId].position - roll);
 
-//const findFirstRescuedDuck = (state) => getDucks(state).find(d => (d.position === 0));
-//const unblockReducer = (state) => moveDuckToPosition(state, findFirstRescuedDuck(state).id, 6);
 const unblockReducer = (state, duckId) => moveDuckToPosition(state, duckId, 6);
 
 const ducks = createReducer({

@@ -1,5 +1,6 @@
 * {
     font-family: 'Pacifico', cursive;
+    user-select: none;
   }
 .duck {
   position: absolute;
@@ -13,16 +14,13 @@
 }
 .duck.active {
   cursor: move;
-/*  border: thick solid black;*/
 }
 .duck.unblock {
   cursor: crosshair;
-  border: thin solid gray;
 }
 .duck.inactive {
   pointer-events: none;
   opacity: 0.5;
-  cursor: default;
 }
 .pond {
   top: 20vh;
@@ -53,5 +51,17 @@ button {
   border-radius: 10px;
   font-size: 25px;
   color: #FFF;
+  background-color: navy;
   text-decoration: none;  
+}
+footer {
+  text-align: center;
+  font-size: xx-small;
+}
+
+@media (orientation: landscape) {
+#overlay { display: none; }
+}
+@media (orientation: portrait) {
+#screen { display: none; }
 }
