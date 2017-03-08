@@ -4,7 +4,7 @@ import { startGame } from '../actions/';
 import { getBulba } from '../reducers/';
 
 const BeginScreen = ({ bulba, startGameAction }) => (<div className="top">
-  <button onClick={() => startGameAction()}>START GAME</button>
+  <button onClick={() => startGameAction()}>Start game</button>
   </div>
   );
 BeginScreen.propTypes = {

@@ -60,9 +60,9 @@ const GameScreen = ({ ducks, turn, roll,
   ))}
  </div>
  <div className="bottom">
-      { displayBlocked && <h2>YOU'RE BLOCKED!</h2> }
-      { displayDefeat && <h3><button onClick={() => endGameAction()}>YOU LOST!</button></h3> }
-      { displayVictory && <h3><button onClick={() => endGameAction()}>YOU WON!</button></h3> }
+      { displayBlocked && <h2>You're blocked!</h2> }
+      { displayDefeat && <h3><button onClick={() => endGameAction()}>You lost!</button></h3> }
+      { displayVictory && <h3><button onClick={() => endGameAction()}>You won!</button></h3> }
       </div>
   </div>);
 GameScreen.propTypes = {
