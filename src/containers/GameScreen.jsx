@@ -54,7 +54,7 @@ const GameScreen = ({ ducks, turn, roll,
    </div>
    ))}
  {ponds.map(p=> (
-  <div key={`pond${p}`} className="pond" style={{transform: `translate(${2 + p * 14}vw)`}}>
+  <div key={`pond${p}`} className={classNames("pond",((p === 0)?"homepond":""))} style={{transform: `translate(${2 + p * 14}vw)`}}>
   <h1 style={{color: 'orange'}}>{(p === 0)?"Home":p}</h1>
   </div>
   ))}

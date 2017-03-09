@@ -6,17 +6,17 @@ import EndScreen from './EndScreen';
 import { getScreen, Screens } from '../reducers/';
 
 const Screen = ({ screen }) => (
-  <div>
+  <div id="layout">
   <div id="overlay">
-  Please rotate the screen.
+  <div>Please rotate the screen.</div>
   </div>
   <div id="screen">
     {(screen === Screens.Begin) && <BeginScreen /> }
     {(screen === Screens.Game) && <GameScreen /> }
     {(screen === Screens.End) && <EndScreen /> }
-  <footer>
+  <div id="copyright">
 <p>Sound effects obtained from www.zapsplat.com</p>
-  </footer>
+  </div>
   </div>
   </div>
   );
