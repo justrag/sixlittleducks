@@ -3,21 +3,23 @@ import { connect } from 'react-redux';
 import BeginScreen from './BeginScreen';
 import GameScreen from './GameScreen';
 import EndScreen from './EndScreen';
+import HelpScreen from './HelpScreen';
 import { getScreen, Screens } from '../reducers/';
 
 const Screen = ({ screen }) => (
   <div id="layout">
-  <div id="overlay">
-  <div>Please rotate the screen.</div>
-  </div>
-  <div id="screen">
-    {(screen === Screens.Begin) && <BeginScreen /> }
-    {(screen === Screens.Game) && <GameScreen /> }
-    {(screen === Screens.End) && <EndScreen /> }
-  <div id="copyright">
-<p>Sound effects obtained from www.zapsplat.com</p>
-  </div>
-  </div>
+    <div id="overlay">
+      <div>Please rotate the screen.</div>
+    </div>
+    <div id="screen">
+      {(screen === Screens.Begin) && <BeginScreen /> }
+      {(screen === Screens.Help) && <HelpScreen /> }
+      {(screen === Screens.Game) && <GameScreen /> }
+      {(screen === Screens.End) && <EndScreen /> }
+      <div id="copyright">
+        <p>Sound effects obtained from www.zapsplat.com</p>
+      </div>
+    </div>
   </div>
   );
 Screen.propTypes = {
