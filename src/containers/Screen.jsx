@@ -4,29 +4,30 @@ import BeginScreen from './BeginScreen';
 import GameScreen from './GameScreen';
 import EndScreen from './EndScreen';
 import HelpScreen from './HelpScreen';
+import PauseScreen from './PauseScreen';
 import { getScreen, Screens } from '../reducers/';
 
-const Screen = ({ screen }) => (
+const Screen = ({ screen }) =>
   <div id="layout">
     <div id="overlay">
       <div>Please rotate the screen.</div>
     </div>
     <div id="screen">
-      {(screen === Screens.Begin) && <BeginScreen /> }
-      {(screen === Screens.Help) && <HelpScreen /> }
-      {(screen === Screens.Game) && <GameScreen /> }
-      {(screen === Screens.End) && <EndScreen /> }
+      {screen === Screens.Begin && <BeginScreen />}
+      {screen === Screens.Help && <HelpScreen />}
+      {screen === Screens.Game && <GameScreen />}
+      {screen === Screens.End && <EndScreen />}
+      {screen === Screens.Pause && <PauseScreen />}
       <div id="copyright">
         <p>Sound effects obtained from www.zapsplat.com</p>
       </div>
     </div>
-  </div>
-  );
+  </div>;
 Screen.propTypes = {
-  screen: React.PropTypes.string.isRequired,
+  screen: React.PropTypes.string.isRequired
 };
-const mapStateToProps = (state) => ({
-  screen: getScreen(state),
+const mapStateToProps = state => ({
+  screen: getScreen(state)
 });
 export default connect(mapStateToProps)(Screen);
 
