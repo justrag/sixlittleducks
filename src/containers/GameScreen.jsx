@@ -98,7 +98,7 @@ const GameScreen = ({
           style={{ transform: `translate(${2 + p * 14}vw)` }}
         >
           <h1 style={{ color: 'orange' }}>
-            {p === 0 ? 'Home' : p}
+            {p === 0 ? '\u2302' : p}
           </h1>
         </div>
       )}
