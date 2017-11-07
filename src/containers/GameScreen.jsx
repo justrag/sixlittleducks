@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import classNames from 'classnames';
 import Roller from '../components/Roller';
@@ -116,17 +117,17 @@ const GameScreen = ({
     </div>
   </div>;
 GameScreen.propTypes = {
-  turn: React.PropTypes.number.isRequired,
-  roll: React.PropTypes.number.isRequired,
-  ducks: React.PropTypes.arrayOf(React.PropTypes.object).isRequired,
-  displayBlocked: React.PropTypes.bool.isRequired,
-  displayDefeat: React.PropTypes.bool.isRequired,
-  displayVictory: React.PropTypes.bool.isRequired,
-  gameLostAction: React.PropTypes.func.isRequired,
-  gameWonAction: React.PropTypes.func.isRequired,
-  chooseDuckAction: React.PropTypes.func.isRequired,
-  pauseAction: React.PropTypes.func.isRequired,
-  unblockAction: React.PropTypes.func.isRequired
+  turn: PropTypes.number.isRequired,
+  roll: PropTypes.number.isRequired,
+  ducks: PropTypes.arrayOf(PropTypes.object).isRequired,
+  displayBlocked: PropTypes.bool.isRequired,
+  displayDefeat: PropTypes.bool.isRequired,
+  displayVictory: PropTypes.bool.isRequired,
+  gameLostAction: PropTypes.func.isRequired,
+  gameWonAction: PropTypes.func.isRequired,
+  chooseDuckAction: PropTypes.func.isRequired,
+  pauseAction: PropTypes.func.isRequired,
+  unblockAction: PropTypes.func.isRequired
 };
 const mapStateToProps = state => ({
   ducks: getDucks(state),

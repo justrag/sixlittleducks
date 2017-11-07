@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import BeginScreen from './BeginScreen';
 import GameScreen from './GameScreen';
@@ -24,7 +25,7 @@ const Screen = ({ screen }) =>
     </div>
   </div>;
 Screen.propTypes = {
-  screen: React.PropTypes.string.isRequired
+  screen: PropTypes.string.isRequired
 };
 const mapStateToProps = state => ({
   screen: getScreen(state)

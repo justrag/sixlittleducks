@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { startGame } from '../actions/';
 import {
@@ -31,12 +32,12 @@ const EndScreen = ({ lost, won, games, victories, defeats, startGameAction }) =>
     <button onClick={startGameAction}>Start another game</button>
   </div>;
 EndScreen.propTypes = {
-  startGameAction: React.PropTypes.func.isRequired,
-  lost: React.PropTypes.bool.isRequired,
-  won: React.PropTypes.bool.isRequired,
-  games: React.PropTypes.number.isRequired,
-  victories: React.PropTypes.number.isRequired,
-  defeats: React.PropTypes.number.isRequired
+  startGameAction: PropTypes.func.isRequired,
+  lost: PropTypes.bool.isRequired,
+  won: PropTypes.bool.isRequired,
+  games: PropTypes.number.isRequired,
+  victories: PropTypes.number.isRequired,
+  defeats: PropTypes.number.isRequired
 };
 const mapStateToProps = state => ({
   lost: isPermanentlyBlocked(state),
