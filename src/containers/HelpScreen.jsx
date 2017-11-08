@@ -1,8 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { startGame, stage } from '../actions/';
-import { getHelpStage } from '../reducers/';
+import { startGame, continueGame, stage } from '../actions/';
+import { getHelpStage, getTurn } from '../reducers/';
 
 const stages = [
   <blockquote>
@@ -29,7 +29,13 @@ const stages = [
   </div>
 ];
 const stagesLength = stages.length;
-const HelpScreen = ({ startGameAction, stageAction, stage }) =>
+const HelpScreen = ({
+  startGameAction,
+  continueGameAction,
+  stageAction,
+  stage,
+  turn
+}) =>
   <div>
     <h1>How to play?</h1>
     {stages[stage]}
@@ -38,15 +44,25 @@ const HelpScreen = ({ startGameAction, stageAction, stage }) =>
         Continue {'\u2b95'}
       </button>}
     {stage === stagesLength - 1 &&
+      turn === 1 &&
       <button onClick={startGameAction}>Now start the game</button>}
+    {stage === stagesLength - 1 &&
+      turn > 1 &&
+      <button onClick={continueGameAction}>Continue the game</button>}
   </div>;
 HelpScreen.propTypes = {
   startGameAction: PropTypes.func.isRequired,
+  continueGameAction: PropTypes.func.isRequired,
   stageAction: PropTypes.func.isRequired,
-  stage: PropTypes.number.isRequired
+  stage: PropTypes.number.isRequired,
+  turn: PropTypes.number.isRequired
 };
-const mapStateToProps = state => ({ stage: getHelpStage(state) });
+const mapStateToProps = state => ({
+  stage: getHelpStage(state),
+  turn: getTurn(state)
+});
 export default connect(mapStateToProps, {
   startGameAction: startGame,
+  continueGameAction: continueGame,
   stageAction: stage
 })(HelpScreen);

@@ -4,7 +4,8 @@ import {
 	endGame,
 	startHelp,
 	pause,
-	continueGame
+	continueGame,
+	forfeitGame
 } from '../actions/';
 
 export const Screens = {
@@ -19,6 +20,7 @@ const screen = createReducer(
 	{
 		[startGame]: () => Screens.Game,
 		[continueGame]: () => Screens.Game,
+		[forfeitGame]: () => Screens.Begin,
 		[startHelp]: () => Screens.Help,
 		[endGame]: () => Screens.End,
 		[pause]: () => Screens.Pause
