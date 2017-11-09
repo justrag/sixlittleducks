@@ -4,8 +4,9 @@ import { createStore, applyMiddleware, compose } from 'redux';
 import { Provider } from 'react-redux';
 import { persistStore, autoRehydrate } from 'redux-persist';
 import soundsMiddleware from 'redux-sounds';
+import rollMiddleware from './middleware/roll';
 import './styles.css';
-import ScreenContainer from './containers/Screen';
+import ScreenContainer from './components/Screen';
 import reducer from './reducers';
 
 const soundsData = {
@@ -24,13 +25,17 @@ const loadedSoundsMiddleware = soundsMiddleware(soundsData);
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 const store = createStore(
   reducer,
-  composeEnhancers(autoRehydrate(), applyMiddleware(loadedSoundsMiddleware))
+  composeEnhancers(
+    autoRehydrate(),
+    applyMiddleware(loadedSoundsMiddleware, rollMiddleware)
+  )
 );
 persistStore(store);
 
-const App = () =>
+const App = () => (
   <Provider store={store}>
     <ScreenContainer />
-  </Provider>;
+  </Provider>
+);
 
 ReactDOM.render(<App />, document.getElementById('root'));

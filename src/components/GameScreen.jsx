@@ -2,8 +2,8 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import classNames from 'classnames';
-import Roller from '../components/Roller';
-import DuckIcon from '../components/DuckIcon';
+import Roller from './Roller';
+import DuckIcon from './DuckIcon';
 import { chooseDuck, unblock, endGame, pause } from '../actions/';
 import {
   getDucks,
@@ -53,26 +53,22 @@ const GameScreen = ({
   chooseDuckAction,
   unblockAction,
   pauseAction
-}) =>
+}) => (
   <div>
     <div className="top">
-      <h1 onClick={pauseAction}>
-        {'\u23f8'}
-      </h1>
+      <h1 onClick={pauseAction}>{'\u23f8'}</h1>
       <h1>Six Little Ducks</h1>
       <Roller roll={roll} />
-      <h2>
-        Turn: {turn}
-      </h2>
+      <h2>Turn: {turn}</h2>
     </div>
     <div className="container">
-      {ducks.map(d =>
+      {ducks.map(d => (
         <div
           key={`duck${d.id}`}
           style={{
             zIndex: d.id + 10,
             transform: `translate(${4 +
-              d.seq % 2 * 5 +
+              (d.seq % 2) * 5 +
               d.position * 14}vw, ${Math.floor(d.seq / 2) * 5}vw)`
           }}
           onClick={() =>
@@ -82,7 +78,8 @@ const GameScreen = ({
               displayBlocked,
               chooseDuckAction,
               unblockAction
-            )}
+            )
+          }
           className={classNames(
             'duck',
             duckClass(d.position, roll, displayBlocked)
@@ -90,32 +87,34 @@ const GameScreen = ({
         >
           <DuckIcon fill={duckColors[d.id]} />
         </div>
-      )}
-      {ponds.map(p =>
+      ))}
+      {ponds.map(p => (
         <div
           key={`pond${p}`}
           className={classNames('pond', p === 0 ? 'homepond' : '')}
           style={{ transform: `translate(${2 + p * 14}vw)` }}
         >
-          <h1 style={{ color: 'orange' }}>
-            {p === 0 ? '\u2302' : p}
-          </h1>
+          <h1 style={{ color: 'orange' }}>{p === 0 ? '\u2302' : p}</h1>
         </div>
-      )}
+      ))}
     </div>
     <div className="bottom">
-      {displayBlocked &&
-        <h2>No duck can move! One of the returned has to go back.</h2>}
-      {displayDefeat &&
+      {displayBlocked && (
+        <h2>No duck can move! One of the returned has to go back.</h2>
+      )}
+      {displayDefeat && (
         <h3>
           <button onClick={gameLostAction}>You lost!</button>
-        </h3>}
-      {displayVictory &&
+        </h3>
+      )}
+      {displayVictory && (
         <h3>
           <button onClick={gameWonAction}>You won!</button>
-        </h3>}
+        </h3>
+      )}
     </div>
-  </div>;
+  </div>
+);
 GameScreen.propTypes = {
   turn: PropTypes.number.isRequired,
   roll: PropTypes.number.isRequired,
